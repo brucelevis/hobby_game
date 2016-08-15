@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FACB341F-B015-412E-AF49-EA3C034DEBF0}</ProjectGuid>
+    <RootNamespace>hobby_game</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>c:\dev\_lib\sdl\include;c:\dev\_lib\glew\include;c:\dev\vecmath\include;c:\dev\_lib\lua53\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>c:\dev\_lib\sdl\lib;c:\dev\_lib\glew\lib;c:\dev\vecmath\build\$(Configuration);c:\dev\_lib\lua53\lib\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>c:\dev\_lib\sdl\include;c:\dev\_lib\glew\include;c:\dev\vecmath\include;c:\dev\_lib\lua53\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>c:\dev\_lib\sdl\lib;c:\dev\_lib\glew\lib;c:\dev\vecmath\build\$(Configuration);c:\dev\_lib\lua53\lib\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;vecmath.lib;lua53_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;vecmath.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\asset.cpp" />
+    <ClCompile Include="src\asset_bank.cpp" />
+    <ClCompile Include="src\asset_type.cpp" />
+    <ClCompile Include="src\bitmap.cpp" />
+    <ClCompile Include="src\bitmap_asset.cpp" />
+    <ClCompile Include="src\exception.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\keyboard.cpp" />
+    <ClCompile Include="src\level.cpp" />
+    <ClCompile Include="src\lua.cpp" />
+    <ClCompile Include="src\lua_script.cpp" />
+    <ClCompile Include="src\lua_table.cpp" />
+    <ClCompile Include="src\lua_value.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\texture_asset.cpp" />
+    <ClCompile Include="src\tilemap.cpp" />
+    <ClCompile Include="src\tilemap_asset.cpp" />
+    <ClCompile Include="src\util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\asset.h" />
+    <ClInclude Include="src\asset_bank.h" />
+    <ClInclude Include="src\asset_type.h" />
+    <ClInclude Include="src\bitmap.h" />
+    <ClInclude Include="src\bitmap_asset.h" />
+    <ClInclude Include="src\exception.h" />
+    <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\keyboard.h" />
+    <ClInclude Include="src\keycode.h" />
+    <ClInclude Include="src\level.h" />
+    <ClInclude Include="src\lua.h" />
+    <ClInclude Include="src\lua_script.h" />
+    <ClInclude Include="src\lua_table.h" />
+    <ClInclude Include="src\lua_type.h" />
+    <ClInclude Include="src\lua_value.h" />
+    <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\texture.h" />
+    <ClInclude Include="src\texture_asset.h" />
+    <ClInclude Include="src\texture_format.h" />
+    <ClInclude Include="src\tilemap.h" />
+    <ClInclude Include="src\tilemap_asset.h" />
+    <ClInclude Include="src\types.h" />
+    <ClInclude Include="src\util.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
