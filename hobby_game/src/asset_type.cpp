@@ -6,6 +6,7 @@ namespace hg
     {
         switch (type)
         {
+        default:
         case AssetType::undefined:
             return "";
         case AssetType::bitmap:

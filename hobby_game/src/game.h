@@ -4,6 +4,7 @@
 #include "level.h"
 #include "lua.h"
 #include "asset_bank.h"
+#include "sound.h"
 
 namespace hg
 {
@@ -52,6 +53,7 @@ namespace hg
         GameImpl* m_impl;
         bool m_should_quit;
 
+        Sound m_sound;
         Lua m_lua;
         AssetBank m_assets;
 

@@ -39,12 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>c:\dev\_lib\sdl\include;c:\dev\_lib\glew\include;c:\dev\vecmath\include;c:\dev\_lib\lua53\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>c:\dev\_lib\sdl\lib;c:\dev\_lib\glew\lib;c:\dev\vecmath\build\$(Configuration);c:\dev\_lib\lua53\lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>c:\dev\_lib\sdl\include;c:\dev\_lib\glew\include;c:\dev\vecmath\include;c:\dev\_lib\lua53\include\;c:\dev\_lib\openal\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>c:\dev\_lib\sdl\lib;c:\dev\_lib\glew\lib;c:\dev\vecmath\build\$(Configuration);c:\dev\_lib\lua53\lib\;c:\dev\_lib\openal\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>c:\dev\_lib\sdl\include;c:\dev\_lib\glew\include;c:\dev\vecmath\include;c:\dev\_lib\lua53\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>c:\dev\_lib\sdl\lib;c:\dev\_lib\glew\lib;c:\dev\vecmath\build\$(Configuration);c:\dev\_lib\lua53\lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>c:\dev\_lib\sdl\include;c:\dev\_lib\glew\include;c:\dev\vecmath\include;c:\dev\_lib\lua53\include\;c:\dev\_lib\openal\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>c:\dev\_lib\sdl\lib;c:\dev\_lib\glew\lib;c:\dev\vecmath\build\$(Configuration);c:\dev\_lib\lua53\lib\;c:\dev\_lib\openal\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -54,7 +54,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;vecmath.lib;lua53_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;vecmath.lib;OpenAL32.lib;lua53_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -70,7 +70,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;vecmath.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glu32.lib;glew32.lib;vecmath.lib;OpenAL32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -90,11 +90,13 @@
     <ClCompile Include="src\lua_value.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\sound.cpp" />
     <ClCompile Include="src\texture.cpp" />
     <ClCompile Include="src\texture_asset.cpp" />
     <ClCompile Include="src\tilemap.cpp" />
     <ClCompile Include="src\tilemap_asset.cpp" />
     <ClCompile Include="src\util.cpp" />
+    <ClCompile Include="src\wav_file.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\asset.h" />
@@ -113,6 +115,7 @@
     <ClInclude Include="src\lua_type.h" />
     <ClInclude Include="src\lua_value.h" />
     <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\sound.h" />
     <ClInclude Include="src\texture.h" />
     <ClInclude Include="src\texture_asset.h" />
     <ClInclude Include="src\texture_format.h" />
@@ -120,6 +123,7 @@
     <ClInclude Include="src\tilemap_asset.h" />
     <ClInclude Include="src\types.h" />
     <ClInclude Include="src\util.h" />
+    <ClInclude Include="src\wav_file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,6 +12,8 @@
 
 #include <iostream>
 
+#include "wav_file.h"
+
 namespace hg
 {
     class GameImpl
@@ -173,6 +175,7 @@ namespace hg
     {
         m_impl->create(*this);
 
+        m_sound.init();
         m_lua.init();
         m_assets.init(m_lua);
 
@@ -194,6 +197,8 @@ namespace hg
     {
         m_assets.destroy();
         m_lua.destroy();
+        m_sound.destroy();
+
         m_impl->destroy();
     }
 
@@ -273,13 +278,13 @@ namespace hg
                 uv_rect += vcm::vec4(0.0f, 0.0f, uv_rect.x, uv_rect.y);
 
                 glTexCoord2f(uv_rect.x, uv_rect.y);
-                glVertex2f(ti.x, ti.y);
+                glVertex2f((float)ti.x, (float)ti.y);
                 glTexCoord2f(uv_rect.x, uv_rect.w);
-                glVertex2f(ti.x, ti.y + ti.h);
+                glVertex2f((float)ti.x, (float)ti.y + ti.h);
                 glTexCoord2f(uv_rect.z, uv_rect.w);
-                glVertex2f(ti.x + ti.w, ti.y + ti.h);
+                glVertex2f((float)ti.x + ti.w, (float)ti.y + ti.h);
                 glTexCoord2f(uv_rect.z, uv_rect.y);
-                glVertex2f(ti.x + ti.w, ti.y);
+                glVertex2f((float)ti.x + ti.w, (float)ti.y);
             }
         }
 

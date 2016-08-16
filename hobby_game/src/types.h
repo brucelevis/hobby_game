@@ -14,6 +14,10 @@ namespace hg
     using uint32 = uint32_t;
     using uint64 = uint64_t;
 
+    using uint = uint32;
+    using ushort = uint16;
+    using ulong = uint64;
+
     using byte = int8;
     using ubyte = uint8;
 }

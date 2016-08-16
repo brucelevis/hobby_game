@@ -117,7 +117,13 @@ namespace hg
 
     void AssetBank::destroy()
     {
+        if (!m_assets.empty())
+        {
+            for (auto a : m_assets)
+                delete a;
 
+            m_assets.clear();
+        }
     }
 
     int AssetBank::load_bitmap(const std::string& file_name)

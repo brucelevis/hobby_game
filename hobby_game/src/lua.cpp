@@ -39,76 +39,27 @@ namespace hg
         auto L = (lua_State*)m_L;
 
         luaL_openlibs(L);
-
-        /*
-        //load file
-        int result = luaL_loadfile(L, "assets/tilemap.lua");
-        if (result != LUA_OK)
-            throw_lua_err(L);
-
-        //store file
-        int file_chunk = luaL_ref(L, LUA_REGISTRYINDEX);
-
-        //run file
-        lua_rawgeti(L, LUA_REGISTRYINDEX, file_chunk);
-        result = lua_pcall(L, 0, LUA_MULTRET, 0);
-        if (result != LUA_OK)
-            throw_lua_err(L);
-        */
-
-        /*
-        int script_id = load_script("assets/tilemap.lua");
-        auto script = get_script(script_id);
-        script->run();
-
-        Exception bad_tilemap_file("Bad tilemap file \"" + std::string("assets/tilemap.lua") + "\".");
-
-        lua_getglobal(L, "tile_map");
-        int table_ref = luaL_ref(L, LUA_REGISTRYINDEX);
-
-        LuaTable table(*this, table_ref);
-
-        struct
-        {
-            LuaValue bmp_file_name;
-            LuaValue width, height, tile_width, tile_height;
-            LuaValue tiles;
-        } tile_map_lua;
-
-        if (!table.get_value(LuaType::string, "bmp_file_name", tile_map_lua.bmp_file_name))
-            throw bad_tilemap_file;
-        if (!table.get_value(LuaType::_int, "width", tile_map_lua.width))
-            throw bad_tilemap_file;
-        if (!table.get_value(LuaType::_int, "height", tile_map_lua.height))
-            throw bad_tilemap_file;
-        if (!table.get_value(LuaType::_int, "tile_width", tile_map_lua.tile_width))
-            throw bad_tilemap_file;
-        if (!table.get_value(LuaType::_int, "tile_height", tile_map_lua.tile_height))
-            throw bad_tilemap_file;
-        if (!table.get_value(LuaType::table, "tiles", tile_map_lua.tiles))
-            throw bad_tilemap_file;
-
-        std::vector<LuaValue> tiles;
-        tile_map_lua.tiles.get_table().to_array(tiles);
-        */
     }
 
     void Lua::destroy()
     {
-        auto L = (lua_State*)m_L;
-
-        if (!m_scripts.empty())
+        if (m_L)
         {
-            for (auto script : m_scripts)
-                delete script;
+            auto L = (lua_State*)m_L;
 
-            m_scripts.clear();
+            if (!m_scripts.empty())
+            {
+                for (auto script : m_scripts)
+                    delete script;
+
+                m_scripts.clear();
+            }
+
+            m_next_script_id = 1;
+
+            lua_close(L);
+            m_L = nullptr;
         }
-
-        m_next_script_id = 1;
-
-        lua_close(L);
-        m_L = nullptr;
     }
 
     int Lua::load_script(const std::string& file_name)
