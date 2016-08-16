@@ -11,7 +11,8 @@ namespace hg
 
         bitmap,
         texture,
-        tilemap
+        tilemap,
+        sound_clip
     };
 
     /*

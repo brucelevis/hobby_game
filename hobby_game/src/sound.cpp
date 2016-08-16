@@ -49,6 +49,7 @@ namespace hg
             throw Exception("Could not create OpenAL device.");
         }
 
+        /*
         WavFile file;
         file.load("assets/music/Walkin Contradiction.wav");
 
@@ -61,6 +62,7 @@ namespace hg
         alGenSources(1, &source);
         alSourceQueueBuffers(source, 1, &buffer);
         alSourcePlay(source);
+        */
     }
 
     void SoundImpl::destroy()

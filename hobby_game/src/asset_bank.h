@@ -12,6 +12,7 @@ namespace hg
     class Lua;
 
     class BitmapAsset;
+    class SoundClipAsset;
     class TextureAsset;
     class TilemapAsset;
 
@@ -33,20 +34,18 @@ namespace hg
         void destroy();
 
     public:
-        int load_bitmap(const std::string& file_name);
-        int load_texture(const std::string& file_name);
-        
         /*
-            Loads a tilemap with this file_name. (looks in the folder corresponding to the AssetType::tilemap)
-            "assets/tilemaps/" not needed before file's actual name because of get_asset_type_dir()
+            Loads an asset with this file_name. (looks in the folder corresponding to the AssetType)
+            "assets/{corresponding directory for type}/" not needed before file's actual name because of get_asset_type_dir()
         */
-        int load_tilemap(const std::string& file_name);
+        int load_asset(AssetType type, const std::string& file_name);
         
         int get_asset_id(AssetType type, const std::string& name) const;
         Asset* get_asset(AssetType type, const std::string& name) const;
         Asset* get_asset(int id) const;
 
         BitmapAsset* get_bitmap(int id) const;
+        SoundClipAsset* get_sound_clip(int id) const;
         TextureAsset* get_texture(int id) const;
         TilemapAsset* get_tilemap(int id) const;
 

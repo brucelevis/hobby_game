@@ -91,6 +91,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\sound.cpp" />
+    <ClCompile Include="src\sound_clip_asset.cpp" />
     <ClCompile Include="src\texture.cpp" />
     <ClCompile Include="src\texture_asset.cpp" />
     <ClCompile Include="src\tilemap.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="src\lua_value.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\sound.h" />
+    <ClInclude Include="src\sound_clip_asset.h" />
     <ClInclude Include="src\texture.h" />
     <ClInclude Include="src\texture_asset.h" />
     <ClInclude Include="src\texture_format.h" />
