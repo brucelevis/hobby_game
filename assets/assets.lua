@@ -1,5 +1,10 @@
--- This file is run before anything else
--- Assets can be referred to by using this table
+AssetType = {}
+AssetType.bitmap = 1
+AssetType.texture = 2
+AssetType.tilemap = 3
+AssetType.sound_clip = 4
+
+-- Stores references to all the assets in the game.
 assets = {}
 
 assets.bitmaps = {}
@@ -13,13 +18,13 @@ local textures = assets.textures
 local tilemaps = assets.tilemaps
 
 -- Bitmaps
-bitmaps.test_tiles = "test_tiles.lua"
+bitmaps.test_tiles = api.load_asset(AssetType.bitmap, "test_tiles.lua")
 
 -- Sound clips
-sound_clips.test = "test.lua"
+sound_clips.test = api.load_asset(AssetType.sound_clip, "test.lua")
 
 -- Textures
-textures.test = "test_tiles.lua"
+textures.test_tiles = api.load_asset(AssetType.texture, "test_tiles.lua")
 
 -- Tilemaps
-tilemaps.test = "test.lua"
+tilemaps.test = api.load_asset(AssetType.tilemap, "test.lua")

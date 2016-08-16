@@ -21,8 +21,6 @@ namespace hg
     public:
         AssetBank();
 
-        Lua* get_lua() const { return m_lua; }
-
     protected:
         friend class Game;
 
@@ -32,6 +30,11 @@ namespace hg
         void init(Lua& lua);
 
         void destroy();
+
+    protected:
+        friend class Asset;
+
+        Lua* get_lua() const { return m_lua; }
 
     public:
         /*
@@ -51,8 +54,6 @@ namespace hg
 
     private:
         Lua* m_lua;
-
-        int m_script_id;
 
         std::vector<Asset*> m_assets;
         int m_next_asset_id;

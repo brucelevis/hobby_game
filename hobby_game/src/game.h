@@ -5,10 +5,12 @@
 #include "lua.h"
 #include "asset_bank.h"
 #include "sound.h"
+#include "lua_api.h"
 
 namespace hg
 {
     class GameImpl;
+    class LuaApi;
 
     class Game
     {
@@ -19,7 +21,7 @@ namespace hg
         /*
             Throws.
         */
-        void init();
+        void init(const std::string& exe_dir);
 
         void clean();
 
@@ -56,8 +58,9 @@ namespace hg
         Sound m_sound;
         Lua m_lua;
         AssetBank m_assets;
-
         Keyboard m_keyboard;
+
+        LuaApi m_lua_api;
 
         struct
         {

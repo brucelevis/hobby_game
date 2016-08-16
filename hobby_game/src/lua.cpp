@@ -33,12 +33,24 @@ namespace hg
         
     }
 
-    void Lua::init()
+    void Lua::init(const std::string& exe_dir)
     {
         m_L = luaL_newstate();
         auto L = (lua_State*)m_L;
 
         luaL_openlibs(L);
+
+        std::string pkg_path_fix = "package.path = package.path .. ";
+        pkg_path_fix += "';" + exe_dir + "../assets/?.lua'";
+
+        std::string folders[] = { "bitmaps", "prefabs", "sounds", "textures", "tilemaps" };
+
+        for (auto folder : folders)
+        {
+            pkg_path_fix += " .. ';" + folder + "/?.lua'";
+        }
+
+        luaL_dostring(L, pkg_path_fix.c_str());
     }
 
     void Lua::destroy()

@@ -85,6 +85,7 @@
     <ClCompile Include="src\keyboard.cpp" />
     <ClCompile Include="src\level.cpp" />
     <ClCompile Include="src\lua.cpp" />
+    <ClCompile Include="src\lua_api.cpp" />
     <ClCompile Include="src\lua_script.cpp" />
     <ClCompile Include="src\lua_table.cpp" />
     <ClCompile Include="src\lua_value.cpp" />
@@ -97,7 +98,7 @@
     <ClCompile Include="src\tilemap.cpp" />
     <ClCompile Include="src\tilemap_asset.cpp" />
     <ClCompile Include="src\util.cpp" />
-    <ClCompile Include="src\wav_file.cpp" />
+    <ClCompile Include="src\sound_clip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\asset.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="src\keycode.h" />
     <ClInclude Include="src\level.h" />
     <ClInclude Include="src\lua.h" />
+    <ClInclude Include="src\lua_api.h" />
     <ClInclude Include="src\lua_script.h" />
     <ClInclude Include="src\lua_table.h" />
     <ClInclude Include="src\lua_type.h" />
@@ -125,7 +127,7 @@
     <ClInclude Include="src\tilemap_asset.h" />
     <ClInclude Include="src\types.h" />
     <ClInclude Include="src\util.h" />
-    <ClInclude Include="src\wav_file.h" />
+    <ClInclude Include="src\sound_clip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

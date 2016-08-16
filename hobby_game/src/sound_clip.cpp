@@ -1,4 +1,4 @@
-#include "wav_file.h"
+#include "sound_clip.h"
 
 #include "exception.h"
 
@@ -9,12 +9,12 @@
 
 namespace hg
 {
-    WavFile::WavFile()
+    SoundClip::SoundClip()
     {
 
     }
 
-    void WavFile::load(const std::string& file_name)
+    void SoundClip::load(const std::string& file_name)
     {
         std::ifstream file(file_name, std::ios::in | std::ios::binary | std::ios::ate);
         if (!file)

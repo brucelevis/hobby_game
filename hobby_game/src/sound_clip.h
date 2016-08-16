@@ -7,10 +7,10 @@
 
 namespace hg
 {
-    class WavFile
+    class SoundClip
     {
     public:
-        WavFile();
+        SoundClip();
 
         void load(const std::string& file_name);
 

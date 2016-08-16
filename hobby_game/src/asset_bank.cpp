@@ -13,10 +13,7 @@
 namespace hg
 {
     AssetBank::AssetBank()
-        : m_lua()
-        , m_script_id()
-
-        , m_next_asset_id(1)
+        : m_next_asset_id(1)
     {
 
     }
@@ -24,116 +21,6 @@ namespace hg
     void AssetBank::init(Lua& lua)
     {
         m_lua = &lua;
-
-        //load assets script
-        m_script_id = m_lua->load_script("assets/assets.lua");
-        auto script = m_lua->get_script(m_script_id);
-
-        script->run();
-
-        Exception bad_assets_file("Bad assets file.");
-
-        int assets_table_ref;
-        try
-        {
-            assets_table_ref = m_lua->get_table_ref("assets");
-        }
-        catch (const Exception&)
-        {
-            throw bad_assets_file;
-        }
-
-        LuaTable assets_table(*m_lua, assets_table_ref);
-
-        LuaValue bitmaps_table, sound_clips_table, textures_table, tilemaps_table;
-        if (!assets_table.get_value(LuaType::table, "bitmaps", bitmaps_table))
-            throw bad_assets_file;
-        if (!assets_table.get_value(LuaType::table, "sound_clips", sound_clips_table))
-            throw bad_assets_file;
-        if (!assets_table.get_value(LuaType::table, "textures", textures_table))
-            throw bad_assets_file;
-        if (!assets_table.get_value(LuaType::table, "tilemaps", tilemaps_table))
-            throw bad_assets_file;
-
-        std::vector<LuaValue> bitmaps_list, sound_clips_list, textures_list, tilemaps_list;
-        try
-        {
-            bitmaps_table.get_table().to_array(bitmaps_list);
-            sound_clips_table.get_table().to_array(sound_clips_list);
-            textures_table.get_table().to_array(textures_list);
-            tilemaps_table.get_table().to_array(tilemaps_list);
-        }
-        catch (const Exception&)
-        {
-            throw bad_assets_file;
-        }
-
-        std::vector<std::string> file_names;
-
-        //bitmap files
-        for (const auto& v : bitmaps_list)
-        {
-            if (v.get_type() == LuaType::string)
-            {
-                file_names.push_back(v.get_string());
-            }
-        }
-
-        for (const auto& fn : file_names)
-        {
-            load_asset(AssetType::bitmap, fn);
-        }
-
-        //sound clip files
-        if (!file_names.empty())
-            file_names.clear();
-
-        for (const auto& v : sound_clips_list)
-        {
-            if (v.get_type() == LuaType::string)
-            {
-                file_names.push_back(v.get_string());
-            }
-        }
-
-        for (const auto& fn : file_names)
-        {
-            load_asset(AssetType::sound_clip, fn);
-        }
-
-        //texture files
-        if (!file_names.empty())
-            file_names.clear();
-
-        for (const auto& v : textures_list)
-        {
-            if (v.get_type() == LuaType::string)
-            {
-                file_names.push_back(v.get_string());
-            }
-        }
-
-        for (const auto& fn : file_names)
-        {
-            load_asset(AssetType::texture, fn);
-        }
-
-        //tilemap files
-        if(!file_names.empty())
-            file_names.clear();
-
-        for (const auto& v : tilemaps_list)
-        {
-            if (v.get_type() == LuaType::string)
-            {
-                file_names.push_back(v.get_string());
-            }
-        }
-
-        for (const auto& fn : file_names)
-        {
-            load_asset(AssetType::tilemap, fn);
-        }
     }
 
     void AssetBank::destroy()

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "asset.h"
-#include "wav_file.h"
+#include "sound_clip.h"
 
 namespace hg
 {
@@ -11,7 +11,7 @@ namespace hg
     public:
         SoundClipAsset(AssetBank& bank);
 
-        const WavFile& get_wav_file() const { return m_wav_file; }
+        const SoundClip& get_sound_clip() const { return m_sound_clip; }
 
     protected:
         friend class AssetBank;
@@ -19,6 +19,6 @@ namespace hg
         void load(const std::string& file_name) override;
 
     private:
-        WavFile m_wav_file;
+        SoundClip m_sound_clip;
     };
 }

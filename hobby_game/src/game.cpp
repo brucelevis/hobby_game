@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#include "wav_file.h"
+#include "lua_script.h"
 
 namespace hg
 {
@@ -171,13 +171,18 @@ namespace hg
         delete m_impl;
     }
 
-    void Game::init()
+    void Game::init(const std::string& exe_dir)
     {
         m_impl->create(*this);
 
         m_sound.init();
-        m_lua.init();
+        m_lua.init(exe_dir);
         m_assets.init(m_lua);
+        m_lua_api.init(*this, m_lua, m_assets);
+
+        auto main_script_id = m_lua.load_script("assets/main.lua");
+        auto main_script = m_lua.get_script(main_script_id);
+        main_script->run();
 
         glMatrixMode(GL_PROJECTION);
         glOrtho(0.0, 1280.0, 720.0, 0.0, -1.0, 1.0);
@@ -195,6 +200,8 @@ namespace hg
 
     void Game::clean()
     {
+        m_lua_api.destroy();
+
         m_assets.destroy();
         m_lua.destroy();
         m_sound.destroy();

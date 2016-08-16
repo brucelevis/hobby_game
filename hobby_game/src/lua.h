@@ -22,7 +22,7 @@ namespace hg
         /*
         Throws.
         */
-        void init();
+        void init(const std::string& exe_dir);
 
         void destroy();
 
@@ -57,6 +57,8 @@ namespace hg
         friend class LuaValue;
         friend class LuaTable;
         friend class LuaScript;
+        
+        friend class LuaApi;
 
         void* get_L() const { return m_L; }
 

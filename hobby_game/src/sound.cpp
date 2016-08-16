@@ -5,7 +5,7 @@
 #include <AL/al.h>
 #include <AL/alc.h>
 
-#include "wav_file.h"
+#include "sound_clip.h"
 
 namespace hg
 {
@@ -48,21 +48,6 @@ namespace hg
         {
             throw Exception("Could not create OpenAL device.");
         }
-
-        /*
-        WavFile file;
-        file.load("assets/music/Walkin Contradiction.wav");
-
-        ALuint buffer;
-        alGenBuffers(1, &buffer);
-
-        alBufferData(buffer, AL_FORMAT_STEREO16, file.get_data(), file.get_data_size(), file.get_sample_rate());
-
-        ALuint source;
-        alGenSources(1, &source);
-        alSourceQueueBuffers(source, 1, &buffer);
-        alSourcePlay(source);
-        */
     }
 
     void SoundImpl::destroy()

@@ -20,6 +20,6 @@ namespace hg
         if (!m_table.get_value(LuaType::string, "file_name", sound_file_name))
             throw Exception("Bad bitmap asset file \"" + file_name + "\".");
 
-        m_wav_file.load(get_asset_type_dir(AssetType::sound_clip) + sound_file_name.get_string());
+        m_sound_clip.load(get_asset_type_dir(AssetType::sound_clip) + sound_file_name.get_string());
     }
 }

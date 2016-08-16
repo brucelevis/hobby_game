@@ -78,10 +78,13 @@
     <ClCompile Include="src\sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\wav_file.cpp">
+    <ClCompile Include="src\sound_clip_asset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sound_clip_asset.cpp">
+    <ClCompile Include="src\lua_api.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sound_clip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,10 +161,13 @@
     <ClInclude Include="src\sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\wav_file.h">
+    <ClInclude Include="src\sound_clip_asset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\sound_clip_asset.h">
+    <ClInclude Include="src\lua_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sound_clip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
