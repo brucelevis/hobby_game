@@ -262,6 +262,7 @@ namespace hg
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
 
+        /*
         auto& tmap = m_level.get_tilemap();
         
         float su = 1.0f / tmap.get_texture().get_width();
@@ -311,6 +312,8 @@ namespace hg
         glVertex2f(std::floor(pos.x) + w, std::floor(pos.y));
 
         glEnd();
+
+        */
 
         m_impl->swap_window_buffs();
     }

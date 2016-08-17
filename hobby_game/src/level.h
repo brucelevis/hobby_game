@@ -1,21 +1,32 @@
 #pragma once
 
-#include "player.h"
-#include "tilemap.h"
+#include "object_scene.h"
+#include "component_type.h"
+#include "physics_scene.h"
 
 namespace hg
 {
     class Game;
+    class Entity;
+    class Component;
 
     class Level
+        : public ObjectScene
     {
     public:
         Level();
 
-        Game* get_game() const { return m_game; }
+        int create_entity();
+        void destroy_entity(int id);
+        Entity* get_entity(int id) const;
 
-        const Player& get_player() const { return m_player; }
-        const Tilemap& get_tilemap() const { return m_tilemap; }
+        int create_component(ComponentType type, int entity_id);
+        void destroy_component(ComponentType type, int id);
+        Component* get_component(ComponentType type, int id) const;
+
+        Component* get_component_of(int entity_id, ComponentType type) const;
+
+        Game* get_game() const { return m_game; }
 
     protected:
         friend class Game;
@@ -26,7 +37,7 @@ namespace hg
 
     private:
         Game* m_game;
-        Player m_player;
-        Tilemap m_tilemap;
+
+        PhysicsScene m_physics;
     };
 }
