@@ -13,6 +13,9 @@
 
 #include "physics_component.h"
 
+#include "sound_source.h"
+#include "sound_buffer.h"
+
 namespace hg
 {
     Level::Level()
@@ -28,28 +31,21 @@ namespace hg
         m_physics.init(*this);
 
         int test_entity = create_entity();
+        /*
         create_component(ComponentType::physics, test_entity);
         auto physics = (PhysicsComponent*)get_component_of(test_entity, ComponentType::physics);
         physics->set_position(vcm::vec2(100, 100));
+        */
 
         int sound_id = game.get_assets().get_asset_id(AssetType::sound_clip, "test.lua");
         auto sound_asset = game.get_assets().get_sound_clip(sound_id);
         
-        const auto& sound_clip = sound_asset->get_sound_clip();
-        
-        ///*
-        //TODO: replace with abstract way
-
-        ALuint buffer;
-        alGenBuffers(1, &buffer);
-
-        alBufferData(buffer, AL_FORMAT_STEREO16, sound_clip.get_data(), sound_clip.get_data_size(), sound_clip.get_sample_rate());
-
-        ALuint object;
-        alGenSources(1, &object);
-        alSourceQueueBuffers(object, 1, &buffer);
-        alSourcePlay(object);
-        //*/
+        SoundBuffer buffer;
+        buffer.create(*sound_asset);
+        SoundSource source;
+        source.create();
+        source.set_buffer(buffer);
+        source.play();
     }
 
     void Level::tick(float dt)
@@ -71,17 +67,6 @@ namespace hg
     Entity* Level::get_entity(int id) const
     {
         return (Entity*)get_object(id);
-    }
-
-    int Level::create_component(ComponentType type, int entity_id)
-    {
-        switch (type)
-        {
-        case ComponentType::physics:
-            return m_physics.create_component(entity_id);
-        }
-        
-        return 0;
     }
 
     void Level::destroy_component(ComponentType type, int id)

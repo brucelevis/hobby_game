@@ -4,18 +4,15 @@
 
 namespace hg
 {
-    class PhysicsScene
+    class AudioScene
         : public ComponentScene
     {
     public:
-        PhysicsScene();
+        AudioScene();
 
-    protected:
-        friend class Level;
-
-        void tick(float dt);
+        int create_effect(int entity_id);
 
     private:
-        
+
     };
 }

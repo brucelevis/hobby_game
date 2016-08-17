@@ -8,6 +8,14 @@ namespace hg
 {
     class PhysicsScene;
 
+    enum class PhysicsComponentType
+    {
+        empty,
+        box,
+        circle,
+        grid
+    };
+
     class PhysicsComponent
         : public Component
     {
@@ -20,6 +28,8 @@ namespace hg
         void set_velocity(const vcm::vec2& velocity) { m_velocity = velocity; }
 
         ComponentType get_component_type() const override { return ComponentType::physics; }
+
+        virtual PhysicsComponentType get_physics_type() const = 0;
 
         float get_mass() const { return m_mass; }
         const vcm::vec2& get_position() const { return m_position; }

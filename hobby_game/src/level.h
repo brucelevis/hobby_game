@@ -20,7 +20,6 @@ namespace hg
         void destroy_entity(int id);
         Entity* get_entity(int id) const;
 
-        int create_component(ComponentType type, int entity_id);
         void destroy_component(ComponentType type, int id);
         Component* get_component(ComponentType type, int id) const;
 

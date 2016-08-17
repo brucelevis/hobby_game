@@ -8,6 +8,9 @@
 #include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
 
+#include <AL/al.h>
+#include <AL/alc.h>
+
 #include "exception.h"
 
 #include <iostream>
@@ -51,6 +54,9 @@ namespace hg
         SDL_Window* m_window;
         SDL_GLContext m_gl_context;
         bool m_should_quit;
+
+        ALCdevice* m_al_device;
+        ALCcontext* m_al_context;
     };
 
     GameImpl::GameImpl()
@@ -93,10 +99,34 @@ namespace hg
         auto glew_err = glewInit();
         if (glew_err)
             throw Exception("Could not initialize GLEW. Error code: " + std::to_string(glew_err));
+
+        m_al_device = alcOpenDevice(nullptr);
+        if (m_al_device)
+        {
+            m_al_context = alcCreateContext(m_al_device, nullptr);
+            if (m_al_context)
+            {
+                alcMakeContextCurrent(m_al_context);
+            }
+            else
+            {
+                throw Exception("Could not create OpenAL context.");
+            }
+        }
+        else
+        {
+            throw Exception("Could not create OpenAL device.");
+        }
     }
 
     void GameImpl::destroy()
     {
+        alcDestroyContext(m_al_context);
+        m_al_context = nullptr;
+
+        alcCloseDevice(m_al_device);
+        m_al_device = nullptr;
+
         SDL_GL_DeleteContext(m_gl_context);
         m_gl_context = nullptr;
 
@@ -175,7 +205,6 @@ namespace hg
     {
         m_impl->create(*this);
 
-        m_sound.init();
         m_lua.init(exe_dir);
         m_assets.init(m_lua);
         m_lua_api.init(*this, m_lua, m_assets);
@@ -204,7 +233,6 @@ namespace hg
 
         m_assets.destroy();
         m_lua.destroy();
-        m_sound.destroy();
 
         m_impl->destroy();
     }
