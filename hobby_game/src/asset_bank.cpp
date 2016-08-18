@@ -13,7 +13,6 @@
 namespace hg
 {
     AssetBank::AssetBank()
-        : m_next_asset_id(1)
     {
 
     }
@@ -25,32 +24,28 @@ namespace hg
 
     void AssetBank::destroy()
     {
-        if (!m_assets.empty())
-        {
-            for (auto a : m_assets)
-                delete a;
-
-            m_assets.clear();
-        }
+        clear();
     }
 
     int AssetBank::load_asset(AssetType type, const std::string& file_name)
     {
         Asset* asset = nullptr;
         
+        int id = new_object_id();
+
         switch (type)
         {
         case AssetType::bitmap:
-            asset = new BitmapAsset(*this);
+            asset = new BitmapAsset(*this, id);
             break;
         case AssetType::sound_clip:
-            asset = new SoundClipAsset(*this);
+            asset = new SoundClipAsset(*this, id);
             break;
         case AssetType::texture:
-            asset = new TextureAsset(*this);
+            asset = new TextureAsset(*this, id);
             break;
         case AssetType::tilemap:
-            asset = new TilemapAsset(*this);
+            asset = new TilemapAsset(*this, id);
             break;
         default:
             throw Exception("Bad AssetType in load_asset()");
@@ -69,17 +64,16 @@ namespace hg
         }
 
         asset->m_name = file_name;
-        asset->m_id = m_next_asset_id++;
 
-        m_assets.push_back(asset);
-
-        return asset->m_id;
+        return create_object(asset);
     }
 
     int AssetBank::get_asset_id(AssetType type, const std::string& name) const
     {
-        for (auto a : m_assets)
+        auto os = get_objects();
+        for (int i = 0; i < get_num_objects(); ++i)
         {
+            auto a = (Asset*)(os[i]);
             if (a->get_type() == type && a->get_name() == name)
                 return a->get_id();
         }
@@ -89,24 +83,12 @@ namespace hg
 
     Asset* AssetBank::get_asset(AssetType type, const std::string& name) const
     {
-        for (auto a : m_assets)
-        {
-            if (a->get_type() == type && a->get_name() == name)
-                return a;
-        }
-
-        return nullptr;
+        return (Asset*)get_object(get_asset_id(type, name));
     }
 
     Asset* AssetBank::get_asset(int id) const
     {
-        for (auto a : m_assets)
-        {
-            if (a->get_id() == id)
-                return a;
-        }
-
-        return nullptr;
+        return (Asset*)get_object(id);
     }
 
     BitmapAsset* AssetBank::get_bitmap(int id) const

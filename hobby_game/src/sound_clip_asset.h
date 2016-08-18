@@ -9,7 +9,7 @@ namespace hg
         : public Asset
     {
     public:
-        SoundClipAsset(AssetBank& bank);
+        SoundClipAsset(AssetBank& bank, int id);
 
         const SoundClip& get_sound_clip() const { return m_sound_clip; }
 

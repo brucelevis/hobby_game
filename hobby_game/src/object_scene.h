@@ -12,6 +12,8 @@ namespace hg
         ObjectScene();
         virtual ~ObjectScene();
 
+        void clear();
+
         Object* const * get_objects() const { return m_objects.data(); }
         int get_num_objects() const { return (int)m_objects.size(); }
     

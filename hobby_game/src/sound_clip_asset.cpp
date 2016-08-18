@@ -6,8 +6,8 @@
 
 namespace hg
 {
-    SoundClipAsset::SoundClipAsset(AssetBank& bank)
-        : Asset(bank, AssetType::sound_clip)
+    SoundClipAsset::SoundClipAsset(AssetBank& bank, int id)
+        : Asset(bank, id, AssetType::sound_clip)
     {
 
     }

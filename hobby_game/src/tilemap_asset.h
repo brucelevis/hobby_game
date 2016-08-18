@@ -10,7 +10,7 @@ namespace hg
         : public Asset
     {
     public:
-        TilemapAsset(AssetBank& bank);
+        TilemapAsset(AssetBank& bank, int id);
 
         int get_texture_asset() const { return m_texture_asset; }
 

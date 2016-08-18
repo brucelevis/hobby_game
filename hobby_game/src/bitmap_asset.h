@@ -9,7 +9,7 @@ namespace hg
         : public Asset
     {
     public:
-        BitmapAsset(AssetBank& bank);
+        BitmapAsset(AssetBank& bank, int id);
 
         const Bitmap& get_bitmap() const { return m_bitmap; }
 

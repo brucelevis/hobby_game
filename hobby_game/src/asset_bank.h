@@ -1,6 +1,7 @@
 #pragma once
 
 #include "asset_type.h"
+#include "object_scene.h"
 
 #include <vector>
 #include <string>
@@ -17,6 +18,7 @@ namespace hg
     class TilemapAsset;
 
     class AssetBank
+        : public ObjectScene
     {
     public:
         AssetBank();
@@ -54,8 +56,5 @@ namespace hg
 
     private:
         Lua* m_lua;
-
-        std::vector<Asset*> m_assets;
-        int m_next_asset_id;
     };
 }

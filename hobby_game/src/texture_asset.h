@@ -9,7 +9,7 @@ namespace hg
         : public Asset
     {
     public:
-        TextureAsset(AssetBank& bank);
+        TextureAsset(AssetBank& bank, int id);
 
         int get_bitmap_asset() const { return m_bitmap_asset; }
         TextureFormat get_format() const { return m_format; }

@@ -7,8 +7,8 @@
 
 namespace hg
 {
-    TextureAsset::TextureAsset(AssetBank& bank)
-        : Asset(bank, AssetType::texture)
+    TextureAsset::TextureAsset(AssetBank& bank, int id)
+        : Asset(bank, id, AssetType::texture)
 
         , m_bitmap_asset()
         , m_format(TextureFormat::undefined)

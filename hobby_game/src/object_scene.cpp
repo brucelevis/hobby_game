@@ -48,4 +48,13 @@ namespace hg
 
         return nullptr;
     }
+
+    void ObjectScene::clear()
+    {
+        for (auto o : m_objects)
+            delete o;
+
+        if (!m_objects.empty())
+            m_objects.clear();
+    }
 }

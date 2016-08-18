@@ -7,11 +7,10 @@
 
 namespace hg
 {
-    Asset::Asset(AssetBank& bank, AssetType type)
-        : m_bank(bank)
+    Asset::Asset(AssetBank& bank, int id, AssetType type)
+        : Object(bank, id)
+        , m_bank(bank)
         , m_type(type)
-
-        , m_id()
     {
 
     }

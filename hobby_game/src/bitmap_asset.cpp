@@ -6,8 +6,8 @@
 
 namespace hg
 {
-    BitmapAsset::BitmapAsset(AssetBank& bank)
-        : Asset(bank, AssetType::bitmap)
+    BitmapAsset::BitmapAsset(AssetBank& bank, int id)
+        : Asset(bank, id, AssetType::bitmap)
     {
 
     }

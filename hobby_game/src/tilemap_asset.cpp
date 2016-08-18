@@ -7,8 +7,8 @@
 
 namespace hg
 {
-    TilemapAsset::TilemapAsset(AssetBank& bank)
-        : Asset(bank, AssetType::tilemap)
+    TilemapAsset::TilemapAsset(AssetBank& bank, int id)
+        : Asset(bank, id, AssetType::tilemap)
 
         , m_texture_asset()
         , m_width()
