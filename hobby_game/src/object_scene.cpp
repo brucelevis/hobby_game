@@ -12,11 +12,7 @@ namespace hg
 
     ObjectScene::~ObjectScene()
     {
-        for (auto s : m_objects)
-            delete s;
 
-        if (!m_objects.empty())
-            m_objects.clear();
     }
 
     int ObjectScene::create_object(Object* object)

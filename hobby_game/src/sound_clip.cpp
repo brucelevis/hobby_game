@@ -103,4 +103,17 @@ namespace hg
         m_bits_per_sample = bits_per_sample;
         m_data.swap(data);
     }
+
+    void SoundClip::create_buffer()
+    {
+        if (!m_data.empty())
+            m_buffer.create(*this);
+        else
+            throw Exception("Tried to create_buffer() on empty SoundClip.");
+    }
+
+    void SoundClip::destroy_buffer()
+    {
+        m_buffer.destroy();
+    }
 }

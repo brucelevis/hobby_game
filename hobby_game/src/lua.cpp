@@ -16,7 +16,7 @@ namespace hg
     {
         auto L = (lua_State*)L_;
 
-        Exception err(lua_tostring(L, -1));
+        Exception err(std::string("Lua error: ") + lua_tostring(L, -1));
         lua_pop(L, 1);
         throw err;
     }

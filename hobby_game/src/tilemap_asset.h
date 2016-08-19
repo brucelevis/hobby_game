@@ -22,6 +22,8 @@ namespace hg
         const int* get_tiles() const { return m_tiles.data() + 0; }
         int get_num_tiles() const { return (int)m_tiles.size(); }
 
+        AssetType get_type() const override { return AssetType::tilemap; }
+
     protected:
         friend class AssetBank;
 

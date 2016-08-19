@@ -16,6 +16,8 @@ namespace hg
         TextureWrap get_wrap_mode() const { return m_wrap_mode; }
         TextureFilter get_filter_mode() const { return m_filter_mode; }
 
+        AssetType get_type() const override { return AssetType::texture; }
+
     protected:
         friend class AssetBank;
 

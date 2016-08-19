@@ -1,6 +1,7 @@
 #pragma once
 
 #include "component.h"
+#include "sound_source.h"
 
 namespace hg
 {
@@ -23,7 +24,7 @@ namespace hg
 
         virtual AudioComponentType get_audio_type() const = 0;
 
-    private:
-
+    protected:
+        SoundSource m_source;
     };
 }

@@ -2,6 +2,7 @@
 
 #include "object_scene.h"
 #include "component_type.h"
+#include "audio_scene.h"
 #include "physics_scene.h"
 
 namespace hg
@@ -31,12 +32,14 @@ namespace hg
         friend class Game;
 
         void init(Game& game);
+        void destroy();
 
         void tick(float dt);
 
     private:
         Game* m_game;
 
+        AudioScene m_audio;
         PhysicsScene m_physics;
     };
 }

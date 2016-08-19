@@ -4,6 +4,8 @@
 
 namespace hg
 {
+    class Level;
+
     class PhysicsScene
         : public ComponentScene
     {

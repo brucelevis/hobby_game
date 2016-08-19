@@ -229,6 +229,8 @@ namespace hg
 
     void Game::clean()
     {
+        m_level.destroy();
+
         m_lua_api.destroy();
 
         m_assets.destroy();

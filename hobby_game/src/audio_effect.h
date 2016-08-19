@@ -12,8 +12,8 @@ namespace hg
 
         void play();
 
-        void set_sound_clip_asset(int sound_clip_asset) { m_sound_clip_asset = sound_clip_asset; }
-        int get_sound_clip_asset() const { return m_sound_clip_asset; }
+        void set_sound_clip_asset(int sound_clip_asset);
+        int get_sound_clip_asset() const;
 
         AudioComponentType get_audio_type() const override { return AudioComponentType::effect; }
 

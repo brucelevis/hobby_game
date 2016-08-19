@@ -14,11 +14,12 @@ namespace hg
         : public Object
     {
     public:
-        explicit Asset(AssetBank& bank, int id, AssetType type);
+        Asset(AssetBank& bank, int id);
         virtual ~Asset();
 
         AssetBank& get_bank() const { return m_bank; }
-        AssetType get_type() const { return m_type; }
+        
+        virtual AssetType get_type() const = 0;
 
         const std::string& get_name() const { return m_name; }
 
@@ -34,8 +35,5 @@ namespace hg
 
         std::string m_name;
         LuaTable m_table;
-
-    private:
-        AssetType m_type;
     };
 }

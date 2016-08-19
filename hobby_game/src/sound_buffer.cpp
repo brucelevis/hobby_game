@@ -14,14 +14,17 @@ namespace hg
 
     }
 
-    void SoundBuffer::create(const SoundClipAsset& sound_clip_asset)
+    void SoundBuffer::create()
     {
         destroy();
 
         alGenBuffers(1, &m_buffer);
+    }
 
-        const SoundClip& sound_clip = sound_clip_asset.get_sound_clip();
-
+    void SoundBuffer::create(const SoundClip& sound_clip)
+    {
+        create();
+    
         ALenum format;
         bool bad_format = false;
         if (sound_clip.get_num_channels() == 1)
@@ -49,10 +52,17 @@ namespace hg
 
         if (bad_format)
         {
-            throw Exception("Bad format in sound_clip asset \"" + sound_clip_asset.get_name() + "\" in SoundBuffer::create()");
+            throw Exception("Bad format in sound_clip in SoundBuffer::create()");
         }
 
         alBufferData(m_buffer, format, sound_clip.get_data(), sound_clip.get_data_size(), sound_clip.get_sample_rate());
+    }
+
+    void SoundBuffer::create(const SoundClipAsset& sound_clip_asset)
+    {
+        const SoundClip& sound_clip = sound_clip_asset.get_sound_clip();
+
+        create(sound_clip);
     }
 
     void SoundBuffer::destroy()

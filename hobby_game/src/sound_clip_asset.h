@@ -13,6 +13,8 @@ namespace hg
 
         const SoundClip& get_sound_clip() const { return m_sound_clip; }
 
+        AssetType get_type() const override { return AssetType::sound_clip; }
+
     protected:
         friend class AssetBank;
 

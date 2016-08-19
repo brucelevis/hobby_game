@@ -16,6 +16,10 @@
 #include "sound_source.h"
 #include "sound_buffer.h"
 
+#include "audio_effect.h"
+
+#include <SDL2/SDL.h>
+
 namespace hg
 {
     Level::Level()
@@ -29,23 +33,19 @@ namespace hg
         m_game = &game;
 
         m_physics.init(*this);
+        m_audio.init(*this);
 
         int test_entity = create_entity();
-        /*
-        create_component(ComponentType::physics, test_entity);
-        auto physics = (PhysicsComponent*)get_component_of(test_entity, ComponentType::physics);
-        physics->set_position(vcm::vec2(100, 100));
-        */
+        int audio_effect = m_audio.create_effect(test_entity);
+        auto effect = (AudioEffect*)m_audio.get_effect(audio_effect);
+        effect->set_sound_clip_asset(get_game()->get_assets().get_asset_id(AssetType::sound_clip, "test.lua"));
+        effect->play();
+    }
 
-        int sound_id = game.get_assets().get_asset_id(AssetType::sound_clip, "test.lua");
-        auto sound_asset = game.get_assets().get_sound_clip(sound_id);
-        
-        SoundBuffer buffer;
-        buffer.create(*sound_asset);
-        SoundSource source;
-        source.create();
-        source.set_buffer(buffer);
-        source.play();
+    void Level::destroy()
+    {
+        m_audio.clear();
+        m_physics.clear();
     }
 
     void Level::tick(float dt)

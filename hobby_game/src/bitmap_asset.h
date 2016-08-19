@@ -13,6 +13,8 @@ namespace hg
 
         const Bitmap& get_bitmap() const { return m_bitmap; }
 
+        AssetType get_type() const override { return AssetType::bitmap; }
+
     protected:
         friend class AssetBank;
 

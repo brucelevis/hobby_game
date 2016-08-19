@@ -4,6 +4,7 @@
 
 namespace hg
 {
+    class SoundClip;
     class SoundClipAsset;
 
     class SoundBuffer
@@ -11,6 +12,8 @@ namespace hg
     public:
         SoundBuffer();
 
+        void create();
+        void create(const SoundClip& sound_clip);
         void create(const SoundClipAsset& sound_clip);
         void destroy();
 
