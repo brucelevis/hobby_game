@@ -292,58 +292,7 @@ namespace hg
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
 
-        /*
-        auto& tmap = m_level.get_tilemap();
-        
-        float su = 1.0f / tmap.get_texture().get_width();
-        float sv = 1.0f / tmap.get_texture().get_height();
-
-        glEnable(GL_TEXTURE_2D);
-        
-        glBegin(GL_QUADS);
-
-        for (int i = 0; i < tmap.get_num_tiles(); ++i)
-        {
-            TileInfo ti;
-            tmap.get_tile_info(i, ti);
-
-            if (ti.id >= 0)
-            {
-                vcm::vec4 uv_rect = 
-                    vcm::vec4((float)ti.clip_x, (float)ti.clip_y, (float)ti.clip_w, (float)ti.clip_h) 
-                    * vcm::vec4(su, sv, su, sv);
-
-                uv_rect += vcm::vec4(0.0f, 0.0f, uv_rect.x, uv_rect.y);
-
-                glTexCoord2f(uv_rect.x, uv_rect.y);
-                glVertex2f((float)ti.x, (float)ti.y);
-                glTexCoord2f(uv_rect.x, uv_rect.w);
-                glVertex2f((float)ti.x, (float)ti.y + ti.h);
-                glTexCoord2f(uv_rect.z, uv_rect.w);
-                glVertex2f((float)ti.x + ti.w, (float)ti.y + ti.h);
-                glTexCoord2f(uv_rect.z, uv_rect.y);
-                glVertex2f((float)ti.x + ti.w, (float)ti.y);
-            }
-        }
-
-        glEnd();
-
-        glDisable(GL_TEXTURE_2D);
-
-        auto& pos = m_level.get_player().get_position();
-
-        int w = 32, h = 32;
-        
-        glBegin(GL_QUADS);
-
-        glVertex2f(std::floor(pos.x), std::floor(pos.y));
-        glVertex2f(std::floor(pos.x), std::floor(pos.y) + h);
-        glVertex2f(std::floor(pos.x) + w, std::floor(pos.y) + h);
-        glVertex2f(std::floor(pos.x) + w, std::floor(pos.y));
-
-        glEnd();
-
-        */
+        m_level.render();
 
         m_impl->swap_window_buffs();
     }

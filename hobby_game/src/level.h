@@ -4,6 +4,7 @@
 #include "component_type.h"
 #include "audio_scene.h"
 #include "physics_scene.h"
+#include "render_scene.h"
 
 namespace hg
 {
@@ -35,11 +36,13 @@ namespace hg
         void destroy();
 
         void tick(float dt);
+        void render();
 
     private:
         Game* m_game;
 
         AudioScene m_audio;
         PhysicsScene m_physics;
+        RenderScene m_render;
     };
 }

@@ -19,6 +19,8 @@ namespace hg
         Level* get_level() const { return m_level; }
 
     protected:
+        friend class Level;
+
         virtual void init(Level& level);
 
     private:
