@@ -18,6 +18,7 @@
 
 #include "audio_effect.h"
 #include "physics_empty.h"
+#include "render_sprite.h"
 
 #include <SDL2/SDL.h>
 
@@ -37,6 +38,7 @@ namespace hg
         m_audio.init(*this);
         m_render.init(*this);
 
+        /*
         int test_entity = create_entity();
         int audio_effect = m_audio.create_effect(test_entity);
         auto effect = m_audio.get_effect(audio_effect);
@@ -49,6 +51,8 @@ namespace hg
 
         int sprite_id = m_render.create_sprite(test_entity);
         auto sprite = m_render.get_sprite(sprite_id);
+        sprite->set_texture_asset(get_game()->get_assets().get_asset_id(AssetType::texture, "test_tiles.lua"));
+        */
     }
 
     void Level::destroy()

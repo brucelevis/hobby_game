@@ -18,6 +18,16 @@ namespace hg
 
     }
 
+    void TextureAsset::create_texture()
+    {
+        m_texture.create(*this);
+    }
+
+    void TextureAsset::destroy_texture()
+    {
+        m_texture.destroy();
+    }
+
     void TextureAsset::load(const std::string& file_name)
     {
         Asset::load(file_name);
@@ -61,5 +71,7 @@ namespace hg
             m_filter_mode = TextureFilter::nearest;
         else
             throw bad_file;
+
+        create_texture();
     }
 }

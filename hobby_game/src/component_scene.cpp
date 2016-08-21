@@ -20,6 +20,11 @@ namespace hg
         m_level = &level;
     }
 
+    Component* ComponentScene::get_component(int id) const
+    {
+        return (Component*)get_object(id);
+    }
+
     Component* ComponentScene::get_component_of(int entity_id) const
     {
         auto objects = get_objects();

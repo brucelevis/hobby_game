@@ -34,6 +34,9 @@ namespace hg
         const AssetBank& get_assets() const { return m_assets; }
         const Keyboard& get_keyboard() const { return m_keyboard; }
 
+        Level& get_level() { return m_level; }
+        const Level& get_level() const { return m_level; }
+
     protected:
         friend class GameImpl;
 

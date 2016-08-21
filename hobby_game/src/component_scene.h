@@ -14,6 +14,7 @@ namespace hg
         ComponentScene();
         virtual ~ComponentScene();
 
+        virtual Component* get_component(int id) const;
         virtual Component* get_component_of(int entity_id) const;
 
         Level* get_level() const { return m_level; }

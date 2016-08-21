@@ -29,6 +29,15 @@ namespace hg
 
         Game* get_game() const { return m_game; }
 
+        AudioScene& get_audio() { return m_audio; }
+        const AudioScene& get_audio() const { return m_audio; }
+
+        PhysicsScene& get_physics() { return m_physics; }
+        const PhysicsScene& get_physics() const { return m_physics; }
+
+        RenderScene& get_render() { return m_render; }
+        const RenderScene& get_render() const { return m_render; }
+
     protected:
         friend class Game;
 

@@ -5,6 +5,8 @@
 
 #include "level.h"
 #include "physics_component.h"
+#include "game.h"
+#include "texture_asset.h"
 
 #include <GL/glew.h>
 
@@ -60,14 +62,32 @@ namespace hg
         {
             position = physics->get_position();
         }
-        
-        float w = 32.0f, h = 32.0f;
+
+        auto asset = get_level()->get_game()->get_assets().get_texture(s->get_texture_asset());
+        const auto& texture = asset->get_texture();
+        if (asset && texture.exists())
+        {
+            texture.use();
+        }
+
+        vcm::vec4 clip = s->get_clip_rect();
+        float w = (float)texture.get_width();
+        float h = (float)texture.get_height();
 
         glBegin(GL_QUADS);
+
+        glTexCoord2f(clip.x, clip.y);
         glVertex2f(position.x, position.y);
+
+        glTexCoord2f(clip.x, clip.y + clip.w);
         glVertex2f(position.x, position.y + h);
+
+        glTexCoord2f(clip.x + clip.z, clip.y + clip.w);
         glVertex2f(position.x + w, position.y + h);
+
+        glTexCoord2f(clip.x + clip.z, clip.y);
         glVertex2f(position.x + w, position.y);
+
         glEnd();
     }
 }

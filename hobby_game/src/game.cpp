@@ -208,10 +208,7 @@ namespace hg
         m_lua.init(exe_dir);
         m_assets.init(m_lua);
         m_lua_api.init(*this, m_lua, m_assets);
-
-        auto main_script_id = m_lua.load_script("assets/main.lua");
-        auto main_script = m_lua.get_script(main_script_id);
-        main_script->run();
+        m_level.init(*this);
 
         glMatrixMode(GL_PROJECTION);
         glOrtho(0.0, 1280.0, 720.0, 0.0, -1.0, 1.0);
@@ -219,12 +216,14 @@ namespace hg
         glLoadIdentity();
 
         glDisable(GL_DEPTH_TEST);
-
+        
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        m_level.init(*this);
+        auto main_script_id = m_lua.load_script("assets/main.lua");
+        auto main_script = m_lua.get_script(main_script_id);
+        main_script->run();
     }
 
     void Game::clean()
@@ -289,7 +288,7 @@ namespace hg
 
     void Game::render()
     {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);
         glLoadIdentity();
 
         m_level.render();
