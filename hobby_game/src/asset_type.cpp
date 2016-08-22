@@ -17,6 +17,8 @@ namespace hg
             return "assets/tilemaps/";
         case AssetType::sound_clip:
             return "assets/sounds/";
+        case AssetType::behavior:
+            return "assets/behaviors/";
         }
     }
 }

@@ -5,6 +5,7 @@
 #include "audio_scene.h"
 #include "physics_scene.h"
 #include "render_scene.h"
+#include "behavior_scene.h"
 
 namespace hg
 {
@@ -38,6 +39,9 @@ namespace hg
         RenderScene& get_render() { return m_render; }
         const RenderScene& get_render() const { return m_render; }
 
+        BehaviorScene& get_behavior() { return m_behavior; }
+        const BehaviorScene& get_behavior() const { return m_behavior; }
+
     protected:
         friend class Game;
 
@@ -53,5 +57,6 @@ namespace hg
         AudioScene m_audio;
         PhysicsScene m_physics;
         RenderScene m_render;
+        BehaviorScene m_behavior;
     };
 }

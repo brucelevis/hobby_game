@@ -81,6 +81,10 @@
     <ClCompile Include="src\audio_component.cpp" />
     <ClCompile Include="src\audio_effect.cpp" />
     <ClCompile Include="src\audio_scene.cpp" />
+    <ClCompile Include="src\behavior_asset.cpp" />
+    <ClCompile Include="src\behavior_component.cpp" />
+    <ClCompile Include="src\behavior_scene.cpp" />
+    <ClCompile Include="src\behavior_script.cpp" />
     <ClCompile Include="src\bitmap.cpp" />
     <ClCompile Include="src\bitmap_asset.cpp" />
     <ClCompile Include="src\component.cpp" />
@@ -122,6 +126,11 @@
     <ClInclude Include="src\audio_component.h" />
     <ClInclude Include="src\audio_effect.h" />
     <ClInclude Include="src\audio_scene.h" />
+    <ClInclude Include="src\behavior_asset.h" />
+    <ClInclude Include="src\behavior_component.h" />
+    <ClInclude Include="src\behavior_component_type.h" />
+    <ClInclude Include="src\behavior_scene.h" />
+    <ClInclude Include="src\behavior_script.h" />
     <ClInclude Include="src\bitmap.h" />
     <ClInclude Include="src\bitmap_asset.h" />
     <ClInclude Include="src\component.h" />

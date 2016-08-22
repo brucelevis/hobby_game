@@ -43,7 +43,7 @@ namespace hg
         std::string pkg_path_fix = "package.path = package.path .. ";
         pkg_path_fix += "';" + exe_dir + "../assets/?.lua'";
 
-        std::string folders[] = { "bitmaps", "prefabs", "sounds", "textures", "tilemaps" };
+        std::string folders[] = { "bitmaps", "prefabs", "sounds", "textures", "tilemaps", "behaviors" };
 
         for (auto folder : folders)
         {

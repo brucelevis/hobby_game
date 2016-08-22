@@ -37,6 +37,7 @@ namespace hg
         m_physics.init(*this);
         m_audio.init(*this);
         m_render.init(*this);
+        m_behavior.init(*this);
 
         /*
         int test_entity = create_entity();
@@ -57,6 +58,7 @@ namespace hg
 
     void Level::destroy()
     {
+        m_behavior.clear();
         m_render.clear();
         m_audio.clear();
         m_physics.clear();

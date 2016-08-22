@@ -16,6 +16,7 @@ namespace hg
     class SoundClipAsset;
     class TextureAsset;
     class TilemapAsset;
+    class BehaviorAsset;
 
     class AssetBank
         : public ObjectScene
@@ -53,6 +54,7 @@ namespace hg
         SoundClipAsset* get_sound_clip(int id) const;
         TextureAsset* get_texture(int id) const;
         TilemapAsset* get_tilemap(int id) const;
+        BehaviorAsset* get_behavior(int id) const;
 
     private:
         Lua* m_lua;

@@ -9,6 +9,7 @@
 #include "sound_clip_asset.h"
 #include "texture_asset.h"
 #include "tilemap_asset.h"
+#include "behavior_asset.h"
 
 namespace hg
 {
@@ -46,6 +47,9 @@ namespace hg
             break;
         case AssetType::tilemap:
             asset = new TilemapAsset(*this, id);
+            break;
+        case AssetType::behavior:
+            asset = new BehaviorAsset(*this, id);
             break;
         default:
             throw Exception("Bad AssetType in load_asset()");
@@ -123,6 +127,15 @@ namespace hg
         auto a = get_asset(id);
         if (a && a->get_type() == AssetType::tilemap)
             return (TilemapAsset*)a;
+
+        return nullptr;
+    }
+
+    BehaviorAsset* AssetBank::get_behavior(int id) const
+    {
+        auto a = get_asset(id);
+        if (a && a->get_type() == AssetType::behavior)
+            return (BehaviorAsset*)a;
 
         return nullptr;
     }
