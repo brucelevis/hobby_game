@@ -8,6 +8,7 @@ namespace hg
         _int,
         _double,
         string,
-        table
+        table,
+        function
     };
 }

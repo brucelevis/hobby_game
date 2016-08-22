@@ -7,7 +7,9 @@ namespace hg
 {
     class LuaImpl;
     class LuaValue;
+    class LuaObject;
     class LuaTable;
+    class LuaFunction;
     class LuaScript;
 
     class Lua
@@ -55,7 +57,9 @@ namespace hg
 
     protected:
         friend class LuaValue;
+        friend class LuaObject;
         friend class LuaTable;
+        friend class LuaFunction;
         friend class LuaScript;
         
         friend class LuaApi;

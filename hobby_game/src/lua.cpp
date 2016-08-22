@@ -4,6 +4,7 @@
 #include "lua_value.h"
 #include "lua_table.h"
 #include "lua_script.h"
+#include "lua_function.h"
 
 #include <lua.hpp>
 
@@ -51,6 +52,28 @@ namespace hg
         }
 
         luaL_dostring(L, pkg_path_fix.c_str());
+
+        luaL_loadfile(L, "assets/test.lua");
+
+        int err = lua_pcall(L, 0, LUA_MULTRET, 0);
+        if (err)
+        {
+            throw_lua_err(L);
+        }
+
+        lua_getglobal(L, "test");
+
+        int test_ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        LuaFunction f;
+        f.create(this, test_ref);
+        luaL_unref(L, LUA_REGISTRYINDEX, test_ref);
+        
+        LuaValue params[] = { 1, 2, 3 };
+        std::vector<LuaValue> results;
+        f.call(params, 3, results);
+
+        for (int i = 0; i < results.size(); ++i)
+            std::cout << (int)results[i].get_type() << std::endl;
     }
 
     void Lua::destroy()
@@ -145,29 +168,9 @@ namespace hg
 
     LuaValue Lua::get_value(int index) const
     {
-        auto L = (lua_State*)m_L;
-
-        int lt = lua_type(L, index);
-        int table_ref;
         LuaValue value;
-        switch (lt)
-        {
-        case LUA_TNUMBER:
-            if (lua_isinteger(L, index))
-                value = (int)lua_tointeger(L, index);
-            else
-                value = lua_tonumber(L, index);
-            break;
-        case LUA_TSTRING:
-            value = lua_tostring(L, index);
-            break;
-        case LUA_TTABLE:
-            lua_pushvalue(L, index);
-            table_ref = luaL_ref(L, LUA_REGISTRYINDEX);
-            value = LuaTable((*(Lua*)this), table_ref);
-            luaL_unref(L, LUA_REGISTRYINDEX, table_ref);
-            break;
-        }
+
+        value.pull(*this, index, LuaType::undefined);
 
         return value;
     }
