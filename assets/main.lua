@@ -1,4 +1,5 @@
 require 'assets'
+require 'component_type'
 
 local entity = api.create_entity()
 
@@ -11,3 +12,6 @@ api.set_physics_position(empty, 200.0, 100.0)
 
 local sprite = api.create_render_sprite(entity)
 api.set_sprite_texture(sprite, api.get_asset_id(AssetType.texture, "test_tiles.lua"))
+
+local player = api.create_behavior_script(entity, assets.behaviors.player)
+print(player)

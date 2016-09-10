@@ -78,6 +78,20 @@ namespace hg
             throw Exception("Tried to use a nil LuaObject.");
     }
 
+    bool LuaObject::exists() const
+    {
+        try
+        {
+            check_basics();
+        }
+        catch (const Exception& e)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     LuaObject& LuaObject::operator=(const LuaObject& o)
     {
         create(o.m_lua, o.m_object_ref);

@@ -1,24 +1,31 @@
 #include "behavior_script.h"
+#include "behavior_asset.h"
 
 namespace hg
 {
-    BehaviorScript::BehaviorScript(BehaviorScene& scene, int id, Level& level, int entity_id)
+    BehaviorScript::BehaviorScript(BehaviorScene& scene, int id, Level& level, int entity_id, BehaviorAsset& script_asset)
         : BehaviorComponent(scene, id, level, entity_id)
-        , m_script_id()
+        , m_script_asset(&script_asset)
     {
 
     }
 
-    void BehaviorScript::set_script_id(int id)
+    void BehaviorScript::init_self(const LuaTable& self)
     {
-        if (m_script_id != id)
-        {
-            m_script_id = id;
-        }
+        m_self = self;
     }
 
-    int BehaviorScript::get_script_id() const
+    void BehaviorScript::init()
     {
-        return m_script_id;
+        BehaviorComponent::init();
+
+        m_script_asset->init(m_self);
+    }
+
+    void BehaviorScript::tick(float dt)
+    {
+        BehaviorComponent::tick(dt);
+
+        m_script_asset->tick(m_self, dt);
     }
 }

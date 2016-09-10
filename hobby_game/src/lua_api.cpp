@@ -78,6 +78,26 @@ namespace hg
         return 1;
     }
 
+    static int LUA_get_component_of(lua_State* L)
+    {
+        int top = lua_gettop(L);
+        if (top < 2)
+        {
+            throw LuaNumArgException("get_component_of");
+        }
+
+        int entity_id = lua_tointeger(L, 1);
+        int comp_type = lua_tointeger(L, 2);
+
+        auto comp = game->get_level().get_component_of(entity_id, (ComponentType)comp_type);
+        int comp_id = 0;
+        if (comp)
+            comp_id = comp->get_id();
+        
+        lua_pushinteger(L, comp_id);
+        return 1;
+    }
+
     static int LUA_create_audio_effect(lua_State* L)
     {
         int top = lua_gettop(L);
@@ -215,12 +235,28 @@ namespace hg
         return 0;
     }
 
+    static int LUA_create_behavior_script(lua_State* L)
+    {
+        int top = lua_gettop(L);
+        if (top < 2)
+            throw LuaNumArgException("create_behavior_script");
+
+        int entity_id = lua_tointeger(L, 1);
+        int script_asset_id = lua_tointeger(L, 2);
+        int comp_id = game->get_level().get_behavior().create_script(entity_id, script_asset_id);
+        
+        lua_pushinteger(L, comp_id);
+
+        return 1;
+    }
+
     static luaL_Reg lua_functions[] =
     {
         { "load_asset", &LUA_load_asset },
         { "get_asset_id", &LUA_get_asset_id },
 
         { "create_entity", &LUA_create_entity },
+        { "get_component_of", &LUA_get_component_of },
 
         { "create_audio_effect", &LUA_create_audio_effect },
         { "set_audio_effect_sound_clip", &LUA_set_audio_effect_sound_clip },
@@ -230,7 +266,9 @@ namespace hg
         { "set_physics_position", &LUA_set_physics_position },
 
         { "create_render_sprite", &LUA_create_render_sprite },
-        { "set_sprite_texture", &LUA_set_sprite_texture }
+        { "set_sprite_texture", &LUA_set_sprite_texture },
+
+        { "create_behavior_script", &LUA_create_behavior_script }
     };
 
     void LuaApi::init(Game& game_, Lua& lua, AssetBank& assets)

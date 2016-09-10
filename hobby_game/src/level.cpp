@@ -38,22 +38,6 @@ namespace hg
         m_audio.init(*this);
         m_render.init(*this);
         m_behavior.init(*this);
-
-        /*
-        int test_entity = create_entity();
-        int audio_effect = m_audio.create_effect(test_entity);
-        auto effect = m_audio.get_effect(audio_effect);
-        effect->set_sound_clip_asset(get_game()->get_assets().get_asset_id(AssetType::sound_clip, "test.lua"));
-        effect->play();
-
-        int empty_id = m_physics.create_empty(test_entity);
-        auto empty = m_physics.get_empty(empty_id);
-        empty->set_position(vcm::vec2(500.0f, 100.0f));
-
-        int sprite_id = m_render.create_sprite(test_entity);
-        auto sprite = m_render.get_sprite(sprite_id);
-        sprite->set_texture_asset(get_game()->get_assets().get_asset_id(AssetType::texture, "test_tiles.lua"));
-        */
     }
 
     void Level::destroy()
@@ -66,7 +50,7 @@ namespace hg
 
     void Level::tick(float dt)
     {
-        
+        m_behavior.tick(dt);
     }
 
     void Level::render()

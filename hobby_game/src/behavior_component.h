@@ -18,6 +18,12 @@ namespace hg
 
         ComponentType get_component_type() const override { return ComponentType::behavior; }
 
+    protected:
+        friend class BehaviorScene;
+
+        virtual void init();
+        virtual void tick(float dt);
+
     private:
 
     };

@@ -14,4 +14,14 @@ namespace hg
     {
 
     }
+
+    void BehaviorComponent::init()
+    {
+
+    }
+
+    void BehaviorComponent::tick(float dt)
+    {
+
+    }
 }

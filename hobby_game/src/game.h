@@ -34,6 +34,9 @@ namespace hg
         const AssetBank& get_assets() const { return m_assets; }
         const Keyboard& get_keyboard() const { return m_keyboard; }
 
+        Lua& get_lua() { return m_lua; }
+        const Lua& get_lua() const { return m_lua; }
+
         Level& get_level() { return m_level; }
         const Level& get_level() const { return m_level; }
 

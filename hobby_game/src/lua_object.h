@@ -34,6 +34,8 @@ namespace hg
 
         int get_ref() const { return m_object_ref; }
 
+        bool exists() const;
+
     protected:
         void check_basics() const;
 

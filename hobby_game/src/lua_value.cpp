@@ -142,7 +142,7 @@ namespace hg
             {
                 lua_pushvalue(L, idx);
                 object_ref = luaL_ref(L, LUA_REGISTRYINDEX);
-                table.create((Lua*)&lua, object_ref);
+                table.LuaObject::create((Lua*)&lua, object_ref);
                 *this = table;
                 luaL_unref(L, LUA_REGISTRYINDEX, object_ref);
             }
